@@ -1,0 +1,48 @@
+#Given an array of integers, return indices of the two numbers such that they add up to a specific target.
+#You may assume that each input would have exactly one solution, and you may not use the same element twice.
+
+
+# Using Dictionary(Hash Map implementation for improving efficiency)
+class Solution:
+    def twoSum(self, nums: List[int], target: int) -> List[int]:
+        num_dict = {}
+        solution = []
+        # Store everything as a dict in Python
+        for i in range(len(nums)):
+            if nums[i] not in num_dict.keys():
+                num_dict[nums[i]] = [i]
+            else:
+                value = num_dict[nums[i]].append(i)
+        # Lookup for target from stored Hashmap
+        for i in range(len(nums)):
+            required_num = target - nums[i]
+            if required_num in num_dict.keys():
+                if (num_dict[required_num] not in solution):
+                    values = num_dict[required_num]
+                    for value in values:
+                        if(value > i):
+                            solution.append(i)
+                            solution.append(value)
+        
+        return solution
+                
+            
+
+# Brute Force Method of iterating through two loops(O(N^2) complexity)
+''''
+class Solution:
+    def twoSum(self, nums: List[int], target: int) -> List[int]:
+        #Cant reuse elements
+        #Break after one solution
+        solution = []
+        for i in range(len(nums)):
+            if i not in solution:
+                for j in range(i+1, len(nums)):
+                    #Check if elements is used
+                    if j not in solution:
+                        if((nums[i] + nums[j]) == target):
+                            solution.append(i)
+                            solution.append(j)
+        return solution
+            
+'''  
