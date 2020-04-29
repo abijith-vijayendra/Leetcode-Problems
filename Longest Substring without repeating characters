@@ -1,0 +1,57 @@
+class Solution:
+    def lengthOfLongestSubstring(self, s: str) -> int:
+        l = len(s)
+        subset = set()
+        i = j = ans = 0
+        while(i < l and j < l):
+            if(s[j] not in subset):
+                print('Printing j before', j)
+                subset.add(s[j])
+                j += 1
+                print('Printing j after', j)
+                ans = max(ans, j-i)
+                print(subset)
+            else:
+                print('else')
+                print('Printing i before', i)
+                subset.remove(s[i])
+                i += 1
+                print('Printing i after', i)
+                print(subset)
+        return ans
+
+
+
+'''
+class Solution:
+    def lengthOfLongestSubstring(self, s: str) -> int:
+        len_set = set()
+        len_set.add(0)
+        sub_string = ""
+        l = 0
+        i = 0
+        for j in range(len(s)):
+            i = j
+            while(i <= (len(s))):
+                if(i<(len(s))):
+                    if(s[i] not in sub_string):
+                        sub_string += s[i]
+                    i += 1
+                    if(i<(len(s))):
+                        if(s[i] in sub_string):
+                            print(sub_string)
+                            l = len(sub_string)
+                            print(l)
+                            len_set.add(l)
+                            sub_string = ""        
+                elif(i == len(s)):
+                    print(sub_string)
+                    l = len(sub_string)
+                    print(l)
+                    len_set.add(l)
+                    sub_string = ""
+                    break
+                
+                    
+        return max(len_set)
+'''
